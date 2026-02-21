@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANKIT PREMIUM HUB - V14</title>
+    <title>ANKIT PREMIUM HUB - V14 FIXED</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #000; --gold: #FFD700; --green: #00ff00; --red: #ff0000; --blue: #00d4ff; }
@@ -48,7 +48,6 @@
             cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); transition: 0.3s;
         }
-        .verify-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
 
         /* --- RAINBOW GLOW ANIMATIONS --- */
         @keyframes rainbow {
@@ -57,12 +56,11 @@
             66% { color: #00d4ff; text-shadow: 0 0 10px #00d4ff; }
         }
         @keyframes rainbow-bg {
-            0%, 100% { background: #ff0000; box-shadow: 0 0 15px #ff0000; }
-            33% { background: #00ff00; box-shadow: 0 0 15px #00ff00; }
-            66% { background: #0000ff; box-shadow: 0 0 15px #0000ff; }
+            0%, 100% { background: #ff0000; }
+            33% { background: #00ff00; }
+            66% { background: #0000ff; }
         }
 
-        /* --- LAYOUT FIX --- */
         header { padding: 15px; text-align: center; background: #050505; border-bottom: 1px solid #222; }
         .logo { font-family: 'Orbitron'; font-size: 1.3rem; animation: rainbow 4s linear infinite; }
         .sub-btn { 
@@ -81,17 +79,14 @@
             border: 1px dashed #333; padding: 5px; cursor: pointer; border-radius: 8px;
         }
 
-        /* --- PREMIUM BANNER FIX --- */
         .vip-banner-card { 
             grid-column: span 2; background: #000; border: 1px solid var(--gold); 
             padding: 15px; border-radius: 15px; display: flex; align-items: center; 
             justify-content: space-between; cursor: pointer; position: relative; overflow: hidden;
-            box-shadow: inset 0 0 15px rgba(255,215,0,0.1);
         }
         .vip-text { font-family: 'Orbitron'; color: var(--gold); font-size: 0.9rem; }
         .get-btn { background: var(--gold); color: #000; padding: 5px 15px; border-radius: 8px; font-weight: bold; font-size: 0.8rem; }
 
-        /* --- POPUP STYLING --- */
         #premium-popup { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 20px; }
         .banner-box { background: #111; border: 2px solid var(--gold); border-radius: 20px; width: 100%; max-width: 380px; padding: 30px; text-align: center; position: relative; }
         .close-popup { position: absolute; top: 10px; right: 20px; font-size: 28px; cursor: pointer; color: #fff; }
@@ -140,22 +135,18 @@
     const MONETAG_LINK = "https://omg10.com/4/10633197";
     const CPAGRIP_LINK = "https://playabledownload.com/1877832";
 
-    // --- FAKE STATS LOGIC ---
     let liveU = 10204;
     let dailyV = 120072;
     let totalU = 513829160;
 
     function updateStats() {
-        // Live Users (Every 2 seconds)
         setInterval(() => {
-            liveU += Math.floor(Math.random() * 21) - 10; // -10 to +10 change
+            liveU += Math.floor(Math.random() * 21) - 10;
             document.getElementById('live-users').innerText = liveU.toLocaleString();
         }, 2000);
-
-        // Daily & Total (Every 10 seconds)
         setInterval(() => {
-            dailyV += Math.floor(Math.random() * (10 - 5 + 1)) + 5; // +5 to +10
-            totalU += Math.floor(Math.random() * (25 - 20 + 1)) + 20; // +20 to +25
+            dailyV += Math.floor(Math.random() * 10) + 5;
+            totalU += Math.floor(Math.random() * 25) + 20;
             document.getElementById('daily-viewers').innerText = dailyV.toLocaleString();
             document.getElementById('total-users').innerText = totalU.toLocaleString();
         }, 10000);
@@ -183,15 +174,16 @@
         setInterval(() => {
             let m = Math.floor(time / 60);
             let s = time % 60;
-            document.getElementById('timer').innerText = `0${m}:${s < 10 ? '0'+s : s}`;
+            if(document.getElementById('timer')) {
+                document.getElementById('timer').innerText = `0${m}:${s < 10 ? '0'+s : s}`;
+            }
             if(time > 0) time--;
         }, 1000);
     }
 
     function closePopup() { document.getElementById('premium-popup').style.display = 'none'; }
 
-    // 60+ CODES ADDED
-    const codes = [
+    const codesList = [
         {type: "code", n:"New Thar", c:"9090"}, {type: "code", n:"Thar Modified", c:"9191"},
         {type: "code", n:"Hummer Car", c:"8880"}, {type: "code", n:"Bolero", c:"3100"},
         {type: "banner"}, 
@@ -214,7 +206,6 @@
         {type: "banner"},
         {type: "code", n:"Bullet", c:"9999"}, {type: "code", n:"KTM New", c:"1190"},
         {type: "code", n:"Cobra Bike", c:"444"}, {type: "code", n:"Kawasaki Z1000", c:"810"},
-        /* NEW CODES ADDED BELOW TO REACH 60+ */
         {type: "code", n:"Tractor", c:"300"}, {type: "code", n:"Fire Truck", c:"606"},
         {type: "code", n:"Legender", c:"1001"}, {type: "code", n:"Pulsar 220", c:"1111"},
         {type: "code", n:"Monster Thar", c:"09090"}, {type: "code", n:"Monster Police", c:"0100"},
@@ -228,13 +219,13 @@
         {type: "code", n:"G-Wagon", c:"0001"}, {type: "code", n:"Ertiga", c:"1234"},
         {type: "code", n:"Safari", c:"2222"}, {type: "code", n:"Thar White", c:"9091"},
         {type: "code", n:"New Bike", c:"1211"}, {type: "code", n:"Endeavour", c:"2020"},
-        {type: "code", n:"Innova", c:"3344"}
-        {type: "banner"},
+        {type: "code", n:"Innova", c:"3344"},
+        {type: "banner"}
     ];
 
     function render() {
         const grid = document.getElementById('codesGrid');
-        grid.innerHTML = codes.map(item => {
+        grid.innerHTML = codesList.map(item => {
             if(item.type === "code") {
                 return `<div class="card">
                     <h3>${item.n}</h3>
@@ -252,7 +243,9 @@
         }).join('');
     }
 
-    if(localStorage.getItem('ankit_v14_done')) showMain();
+    if(localStorage.getItem('ankit_v14_done')) {
+        showMain();
+    }
 </script>
 </body>
 </html>
